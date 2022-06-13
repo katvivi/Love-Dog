@@ -34,18 +34,6 @@ export const Inicio_Admin = () => {
                     </Link>
                 </div>
             </div>
-            {/* <div className="row justify-content-center">
-                <div className="col-sm-5">
-                    <a href="./">
-                        <img src="https://www.neobis.es/wp-content/uploads/2020/11/boton-inscripcion.png" alt=""/>
-                    </a>
-                </div>
-                <div className="col-sm-5">
-                    <a href="./">
-                        <img src="https://www.neobis.es/wp-content/uploads/2020/11/boton-inscripcion.png" alt=""/>
-                    </a>
-                </div>
-            </div> */}
         </div>
       
   );

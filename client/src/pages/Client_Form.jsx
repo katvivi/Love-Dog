@@ -39,7 +39,11 @@ export const Client_Form = () => {
       var date2 = new Date();
       var fc = date.getMonth() + 4;
       if (date2.getMonth() <= fc) {
-        swal("No puedes adoptar ahora. Espera 3 meses desde tu ultima solicitud").then(() => {
+        swal({
+          title:"No puedes adoptar ahora",
+          text:"Espera 3 meses desde tu ultima solicitud",
+          icon:"info"
+        }).then(() => {
           window.location.replace("/Listado")
         });
       }
