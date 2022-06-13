@@ -18,13 +18,7 @@ export  default class List_Perros extends Component {
         this.setState({perros: res.data});
         console.log(this.state.perros);
     }
-
-    // txt (){
-    //     const p = document.createElement("p");
-    //     p = "Espera";
-    //     document.body.appendChild(p);
-    // }
-
+    
     componentDidMount() {
         this.getPerro();
     }

@@ -11,7 +11,7 @@ import Card_Perros  from "./pages/Card_Perros";
 import { Inicio_Admin } from "./pages/Inicio_Admin";
 import  List_Perros  from "./pages/List_Perros";
 import { Registro_Admin } from "./pages/Registro_Admin";
-import { List_Solicitud } from "./pages/List_Solicitud";
+import List_Solicitud  from "./pages/List_Solicitud";
 import { Client_Form } from "./pages/Client_Form";
 import { EditForm } from "./pages/EditForm";
 import { Usuario_Form } from "./pages/Usuario_Form";
