@@ -27,40 +27,41 @@ export default class Card_Perros extends Component {
                 <div className="row">
                     {
                         this.state.perros.map(perro => (
-                            <div className="col-md-4 p-2">
-                                <div className="card">
-                                    <div className="card-body">
-                                        <img className="card-img-top" src={perro.imagen} alt="" />
-                                        <hr />
-                                        <h4>{perro.nombre}</h4>
-                                        <div className="row">
-                                            <div className="col">
-                                                <label htmlFor="">Raza</label>
-                                                <p>{perro.raza}</p>
+                            perro.estado == 0 ? (
+                                <div className="col-md-4 p-2">
+                                    <div className="card">
+                                        <div className="card-body">
+                                            <img className="card-img-top" src={perro.imagen} alt="" />
+                                            <hr />
+                                            <h4>{perro.nombre}</h4>
+                                            <div className="row">
+                                                <div className="col">
+                                                    <label htmlFor="">Raza</label>
+                                                    <p>{perro.raza}</p>
+                                                </div>
+                                                <div className="col">
+                                                    <label htmlFor="">Color</label>
+                                                    <p>{perro.color}</p>
+                                                </div>
+                                                <div className="col">
+                                                    <label htmlFor="">Sexo</label>
+                                                    <p>{perro.sexo}</p>
+                                                </div>
+                                                <div className="col">
+                                                    <label htmlFor="">Edad</label>
+                                                    <p>{perro.edad}</p>
+                                                </div>
+                                                <div className="col">
+                                                    <label htmlFor="">Tamaño</label>
+                                                    <p>{perro.tamanio}</p>
+                                                </div>
                                             </div>
-                                            <div className="col">
-                                                <label htmlFor="">Color</label>
-                                                <p>{perro.color}</p>
-                                            </div>
-                                            <div className="col">
-                                                <label htmlFor="">Sexo</label>
-                                                <p>{perro.sexo}</p>
-                                            </div>
-                                            <div className="col">
-                                                <label htmlFor="">Edad</label>
-                                                <p>{perro.edad}</p>
-                                            </div>
-                                            <div className="col">
-                                                <label htmlFor="">Tamaño</label>
-                                                <p>{perro.tamanio}</p>
-                                            </div>
+                                            <br /><hr />
+                                            <Link to={`/Client_Form/${perro.id}`} className="btn btn-warning text-white" aria-disabled={true}>Adoptar</Link>
                                         </div>
-                                        <br /><hr />
-                                        <Link to={`/Client_Form/${perro.id}`} className="btn btn-warning text-white">Adoptar</Link>
                                     </div>
                                 </div>
-                            </div>
-
+                            ) : null
                         ))
                     }
                 </div>

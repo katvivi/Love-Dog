@@ -7,7 +7,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export const Client_Form = () => {
   var date = new Date();
-  const [fecha_solicitud, setFecha] = useState(date.toLocaleDateString())
+  const [fecha_solicitud, setFechaSolicitud] = useState(date)
+  const [fecha, setFecha] = useState(date.toLocaleDateString())
   const [nombre, setNombre] = useState('')
   const [apellido, setApellido] = useState('')
   const [edad, setEdad] = useState('')
@@ -17,22 +18,35 @@ export const Client_Form = () => {
   const [tipo_vivienda, setVivienda] = useState('')
   const [mail, setCorreo] = useState('')
   const [ocupacion, setOcupacion] = useState('')
-  const [solicitudes, setSolicitudes] = useState([]);
-
   const [nombrePerro, setNombrePerro] = useState('');
   const [tamanio, setTamanio] = useState('');
 
-
   useEffect(() => {
-    Axios.get('http://localhost:4000/api/Solicitud/get').then((response) => {
-      setSolicitudes(response.data);
-    });
-    getData();
+    getPerroData();
     getUserData();
+    validarSolicitudesPrevias();
   }, []);
 
   const params = useParams();
-  const getData = async () => {
+
+  const validarSolicitudesPrevias = async () => {
+    var id_User = localStorage.getItem("User")
+    const url = `http://localhost:4000/api/Usuario/vs/${id_User}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    if (data.length > 0) {
+      var date = new Date(data[0].fecha_solicitud);
+      var date2 = new Date();
+      var fc = date.getMonth() + 4;
+      if (date2.getMonth() <= fc) {
+        swal("No puedes adoptar ahora. Espera 3 meses desde tu ultima solicitud").then(() => {
+          window.location.replace("/Listado")
+        });
+      }
+    }
+  }
+
+  const getPerroData = async () => {
     const url = `http://localhost:4000/api/Perros/get/${params.id}`;
     const response = await fetch(url);
     const data = await response.json();
@@ -94,10 +108,22 @@ export const Client_Form = () => {
         direccion,
         tipo_vivienda,
         ocupacion,
-        id_perro: params.id
+        id_perro: params.id,
+        id_usuario: localStorage.getItem("User"),
       }).then((response) => {
-        console.log(response.data);
-        alert("Solicitud enviada");
+        Axios.post('http://localhost:4000/api/Perros/actEst/', {
+          id: params.id
+        })
+        swal(
+          {
+            title: "Solicitud Enviada",
+            text: "Su solicitud ha sido enviada y pronto un asesor se contactará para finalizar la adopción",
+            icon: "success",
+            buttons: true,
+          }
+        ).then(() => {
+          window.location.replace("/Listado")
+        })
       }).catch(function (error) {
         console.log(error);
       });
@@ -126,7 +152,7 @@ export const Client_Form = () => {
               <div className="col-sm-6">
                 <label htmlFor="txtFecha" className="form-label">Fecha solicitud </label>
                 <input type="text" className="form-control" id="fecha_solicitud"
-                  value={fecha_solicitud} disabled />
+                  value={fecha} disabled />
               </div>
 
               <div className="col-sm-6">
@@ -135,7 +161,7 @@ export const Client_Form = () => {
                   value={nombre} />
               </div>
 
-              
+
               <div className="col-sm-6">
                 <label htmlFor="txtApellido" className="form-label">Apellido: </label>
                 <input type="text" className="form-control" id="Apellido" disabled required
@@ -175,7 +201,7 @@ export const Client_Form = () => {
               </div>
               <div className="col-sm-6">
                 <label htmlFor="txtInmueble" className="form-label">Tipo de inmueble: </label>
-                <select className="form-select border-0" name="inmueble" id="inmueble"
+                <select className="form-select border-0" name="tipo_vivienda" id="tipo_vivienda"
                   onChange={(e) => { setVivienda(e.target.value) }}>
                   <option defaultValue>Seleccione</option>
                   <option value="Casa">Casa</option>

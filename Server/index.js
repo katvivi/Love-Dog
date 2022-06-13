@@ -73,9 +73,11 @@ app.post('/api/Solicitud/insert', (req, res) => {
     const direccion = req.body.direccion
     const tipo_vivienda = req.body.tipo_vivienda
     const ocupacion = req.body.ocupacion
+    const id_perro = req.body.id_perro
+    const id_usuario = req.body.id_usuario
 
-    const sqlInsert = "INSERT INTO solicitud (fecha_solicitud, nombre, apellido, edad, telefono, ciudad, direccion, tipo_vivienda, ocupacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
-    db.query(sqlInsert, [fecha_solicitud, nombre, apellido, edad, telefono, ciudad, direccion, tipo_vivienda, ocupacion],(err, result) => {
+    const sqlInsert = "INSERT INTO solicitud (fecha_solicitud, nombre, apellido, edad, telefono, ciudad, direccion, tipo_vivienda, ocupacion, id_perro, id_usuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+    db.query(sqlInsert, [fecha_solicitud, nombre, apellido, edad, telefono, ciudad, direccion, tipo_vivienda, ocupacion, id_perro, id_usuario],(err, result) => {
         res.send("Enviado");
     });
 })
@@ -121,6 +123,16 @@ app.get("/api/Perros/get/:id", (req, res) => {
     const id = req.params.id;
 
     const sqlSelect = "SELECT * FROM perro WHERE perro.id = ?";
+    db.query(sqlSelect, id,  (err, result) => {
+        res.send(result);
+    })
+})
+
+app.post("/api/Perros/actEst/", (req, res) => {
+
+    const id = req.body.id;
+
+    const sqlSelect = "UPDATE perro SET estado = 1 WHERE id = ?";
     db.query(sqlSelect, id,  (err, result) => {
         res.send(result);
     })
@@ -188,6 +200,16 @@ app.get("/api/Usuario/get/:id", (req, res) => {
     const id = req.params.id;
 
     const sqlSelect = "SELECT * FROM usuario WHERE id = ?";
+    db.query(sqlSelect, id,  (err, result) => {
+        res.send(result);
+    })
+})
+
+app.get("/api/Usuario/vs/:id", (req, res) => {
+
+    const id = req.params.id;
+
+    const sqlSelect = "SELECT * FROM solicitud WHERE id_usuario = ? ORDER BY fecha_solicitud DESC LIMIT 1";
     db.query(sqlSelect, id,  (err, result) => {
         res.send(result);
     })
