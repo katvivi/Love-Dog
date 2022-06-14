@@ -161,7 +161,7 @@ export const EditForm = () => {
                                 <label htmlFor="txtEstado" className="form-label">Estado:</label>
                                 <select className="form-select border-0" name="estado"
                                     onChange={handleChange}
-                                    value={data.estado}
+                                    value={data.estado == 0 ? "Espera" : "Adoptado"}
                                 >
                                     <option >Seleccione</option>
                                     <option value="Adoptado">Adoptado</option>
