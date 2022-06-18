@@ -55,6 +55,10 @@ export default class Card_Perros extends Component {
                                                     <label htmlFor="">Tamaño</label>
                                                     <p>{perro.tamanio}</p>
                                                 </div>
+                                                <div className="col">
+                                                    <label htmlFor="">Ubicacion</label>
+                                                    <p>{perro.ubicacion}</p>
+                                                </div>
                                             </div>
                                             <br /><hr />
                                             <Link to={`/Client_Form/${perro.id}`} className="btn btn-warning text-white" aria-disabled={true}>Adoptar</Link>

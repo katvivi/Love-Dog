@@ -17,6 +17,7 @@ export const Admin_Form = () => {
   const [imagen, setImagen] = useState('')
   const [sexo, setSexo] = useState('')
   const [estado, setEstado] = useState('')
+  const [ubicacion, setUbicacion] = useState('')
 
   const MostrarAlerta = () => {
     swal({
@@ -39,7 +40,8 @@ export const Admin_Form = () => {
           edad,
           imagen,
           sexo,
-          estado
+          estado,
+          ubicacion
       }).then((response) => {
           console.log(response.data);
           MostrarAlerta();
@@ -138,7 +140,12 @@ export const Admin_Form = () => {
                     <option value="Espera">Espera</option>
                 </select>                
                 </div>
-                
+                <div className="col-sm-12">
+                  <label htmlFor="txtUbicacion" className="form-label">Ubicacion: </label>
+                  <input type="text" className="form-control" id="Ubicacion" required
+                  onChange={(e) => {setUbicacion(e.target.value)}}
+                  />
+                </div>
               </div>         
               <hr className="my-4"/>    
               <div className="row">

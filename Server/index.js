@@ -148,9 +148,10 @@ app.post('/api/Perros/insert', (req, res) => {
     const imagen = req.body.imagen
     const sexo = req.body.sexo
     const estado = req.body.estado
+    const ubicacion = req.body.ubicacion
 
-    const sqlInsert = "INSERT INTO perro (color, raza, nombre, edad, peso, tamanio, imagen, sexo, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
-    db.query(sqlInsert, [color, raza, nombre, edad, peso, tamanio, imagen, sexo, estado],(err, result) => {
+    const sqlInsert = "INSERT INTO perro (color, raza, nombre, edad, peso, tamanio, imagen, sexo, estado, ubicacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+    db.query(sqlInsert, [color, raza, nombre, edad, peso, tamanio, imagen, sexo, estado, ubicacion],(err, result) => {
         res.send(err);
         console.log(sexo);
     });
@@ -178,10 +179,11 @@ app.put("/api/Perros/update/:id", (req, res) => {
     const imagen = req.body.imagen
     const sexo = req.body.sexo
     const estado = req.body.estado
+    const ubicacion = req.body.ubicacion
 
-    const sqlUpdate = "UPDATE perro SET color = ?, raza = ?, nombre = ?, edad = ?, peso = ?, tamanio = ?, imagen = ?, sexo = ?, estado = ? WHERE id = ?";
+    const sqlUpdate = "UPDATE perro SET color = ?, raza = ?, nombre = ?, edad = ?, peso = ?, tamanio = ?, imagen = ?, sexo = ?, estado = ?, ubicacion = ? WHERE id = ?";
 
-    db.query(sqlUpdate, [color, raza, nombre, edad, peso, tamanio, imagen, sexo, estado, id], (err, result) => {
+    db.query(sqlUpdate, [color, raza, nombre, edad, peso, tamanio, imagen, sexo, estado, ubicacion, id], (err, result) => {
         if (err) console.log(err)
     })
 })

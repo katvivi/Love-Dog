@@ -20,6 +20,7 @@ export const Client_Form = () => {
   const [ocupacion, setOcupacion] = useState('')
   const [nombrePerro, setNombrePerro] = useState('');
   const [tamanio, setTamanio] = useState('');
+  const [ubicacion, setUbicacion] = useState('');
 
   useEffect(() => {
     getPerroData();
@@ -40,9 +41,9 @@ export const Client_Form = () => {
       var fc = date.getMonth() + 4;
       if (date2.getMonth() <= fc) {
         swal({
-          title:"No puedes adoptar ahora",
-          text:"Espera 3 meses desde tu ultima solicitud",
-          icon:"info"
+          title: "No puedes adoptar ahora",
+          text: "Espera 3 meses desde tu ultima solicitud",
+          icon: "info"
         }).then(() => {
           window.location.replace("/Listado")
         });
@@ -56,6 +57,8 @@ export const Client_Form = () => {
     const data = await response.json();
     setNombrePerro(data[0].nombre);
     setTamanio(data[0].tamanio);
+    setUbicacion(data[0].ubicacion);
+    console.log(data[0].ubicacion);
   }
 
   const getUserData = async () => {
@@ -97,11 +100,20 @@ export const Client_Form = () => {
     return true;
   }
 
+  // Validacion de la ubicación
+  const validarUbcicacion = () => {
+    if (ubicacion !== ciudad) {
+      alert("La Mascota no esta en su misma ciudad");
+    }
+    return true;
+  }
+
   //Insert
   const enviarSolicitud = () => {
     var ba = validarEdad();
     var bb = validartamanio();
-    if (ba & bb) {
+    var bc = validarUbcicacion();
+    if (ba & bb & bc) {
       Axios.post('http://localhost:4000/api/Solicitud/insert', {
         fecha_solicitud,
         nombre,
@@ -199,7 +211,7 @@ export const Client_Form = () => {
                   onChange={(e) => { setDireccion(e.target.value) }} />
               </div>
               <div className="col-sm-6">
-                <label htmlFor="txtSector" className="form-label">Sector:</label>
+                <label htmlFor="txtSector" className="form-label">Ciudad:</label>
                 <input type="text" className="form-control" id="Sector" required
                   onChange={(e) => { setCiudad(e.target.value) }} />
               </div>
