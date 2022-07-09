@@ -31,7 +31,7 @@ export const Admin_Form = () => {
   }
 
   const RegistrarMascota = () => {
-      Axios.post('http://localhost:4000/api/Perros/insert', {
+      Axios.post('http://54.164.224.159:4000/api/Perros/insert', {
           nombre,
           raza,
           color,

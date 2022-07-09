@@ -16,7 +16,7 @@ export const Login = () => {
 
     const loginApp = () => {
 
-        Axios.post('http://localhost:4000/api/login', {
+        Axios.post('http://54.164.224.159:4000/api/login', {
             mail: userName,
             pass: password,
             permiso: permiso,
@@ -42,7 +42,7 @@ export const Login = () => {
     }
 
     useEffect(() => {
-        Axios.get("http://localhost:4000/login").then((response) => {
+        Axios.get("http://54.164.224.159:4000/login").then((response) => {
             if (response.data.loggedIn === true) {
                 setLoginStatus(response.data.user[0].username);
             }

@@ -10,7 +10,7 @@ export default class List_Solicitud extends Component {
     }
 
     async getSolicitud() {
-        const res = await axios.get('http://localhost:4000/api/Solicitud/get');
+        const res = await axios.get('http://54.164.224.159:4000/api/Solicitud/get');
         this.setState({ solicitudes: res.data });
         console.log(this.state.solicitudes);
     }

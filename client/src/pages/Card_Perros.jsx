@@ -12,7 +12,7 @@ export default class Card_Perros extends Component {
     }
 
     async componentDidMount() {
-        const res = await axios.get('http://localhost:4000/api/Perros/get')
+        const res = await axios.get('http://54.164.224.159:4000/api/Perros/get')
 
         this.setState({ perros: res.data });
         console.log(this.state.perros);

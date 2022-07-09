@@ -36,13 +36,13 @@ export const EditForm = () => {
     }
     const handleSubmitUpdate = (e) => {
         e.preventDefault();
-        axios.put(`http://localhost:4000/api/Perros/update/${params.id}`, editPet).then((res) =>console.log(res)).catch((error) => console.log(error));
+        axios.put(`http://54.164.224.159:4000/api/Perros/update/${params.id}`, editPet).then((res) =>console.log(res)).catch((error) => console.log(error));
         
         MostrarAlerta();
     }
     const params = useParams();
     const getData = async () => {
-        const url = `http://localhost:4000/api/Perros/get/${params.id}`;
+        const url = `http://54.164.224.159:4000/api/Perros/get/${params.id}`;
         const response = await fetch(url);
         const data = await response.json();
         console.log(data[0])

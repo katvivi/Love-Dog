@@ -11,18 +11,13 @@ const { compare } = require('bcryptjs');
 
 //Connexion a la base de datos
 const db = mysql.createPool({
-    host: 'localhost',
+    host: process.env.MYSQL_HOST || 'localhost',
     user: 'root',
-    password: '',
+    password: 'root',
     database: 'db_adopcion'
 })
 
-app.use(cors({
-    origin: ["http://localhost:3000"],
-    methods: ["GET", "POST", "DELETE", "PUT"],
-    credentials: true,
-}));
-
+app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -40,7 +35,7 @@ app.use(
 );
 
 /**Testing */
-app.listen(4000, () => {
+app.listen(4000,"0.0.0.0", () => {
     console.log('Funcionando')
 })
 

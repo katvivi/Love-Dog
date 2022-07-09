@@ -32,7 +32,7 @@ export const Client_Form = () => {
 
   const validarSolicitudesPrevias = async () => {
     var id_User = localStorage.getItem("User")
-    const url = `http://localhost:4000/api/Usuario/vs/${id_User}`;
+    const url = `http://54.164.224.159:4000/api/Usuario/vs/${id_User}`;
     const response = await fetch(url);
     const data = await response.json();
     if (data.length > 0) {
@@ -52,7 +52,7 @@ export const Client_Form = () => {
   }
 
   const getPerroData = async () => {
-    const url = `http://localhost:4000/api/Perros/get/${params.id}`;
+    const url = `http://54.164.224.159:4000/api/Perros/get/${params.id}`;
     const response = await fetch(url);
     const data = await response.json();
     setNombrePerro(data[0].nombre);
@@ -63,7 +63,7 @@ export const Client_Form = () => {
 
   const getUserData = async () => {
     var id_User = localStorage.getItem("User")
-    const url = `http://localhost:4000/api/Usuario/get/${id_User}`;
+    const url = `http://54.164.224.159:4000/api/Usuario/get/${id_User}`;
     const response = await fetch(url);
     const data = await response.json();
     setNombre(data[0].nombre);
@@ -114,7 +114,7 @@ export const Client_Form = () => {
     var bb = validartamanio();
     var bc = validarUbcicacion();
     if (ba & bb & bc) {
-      Axios.post('http://localhost:4000/api/Solicitud/insert', {
+      Axios.post('http://54.164.224.159:4000/api/Solicitud/insert', {
         fecha_solicitud,
         nombre,
         apellido,
@@ -127,7 +127,7 @@ export const Client_Form = () => {
         id_perro: params.id,
         id_usuario: localStorage.getItem("User"),
       }).then((response) => {
-        Axios.post('http://localhost:4000/api/Perros/actEst/', {
+        Axios.post('http://54.164.224.159:4000/api/Perros/actEst/', {
           id: params.id
         })
         swal(

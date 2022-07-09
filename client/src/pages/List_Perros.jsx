@@ -14,7 +14,7 @@ export  default class List_Perros extends Component {
     }
 
     async getPerro(){
-        const res = await axios.get('http://localhost:4000/api/Perros/get');
+        const res = await axios.get('http://54.164.224.159:4000/api/Perros/get');
         this.setState({perros: res.data});
         console.log(this.state.perros);
     }
@@ -25,7 +25,7 @@ export  default class List_Perros extends Component {
 
 
     deletePerro = async (id) => {
-        await axios.delete('http://localhost:4000/api/Perros/delete/' + id)
+        await axios.delete('http://54.164.224.159:4000/api/Perros/delete/' + id)
         this.getPerro();
     }
 

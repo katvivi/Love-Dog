@@ -24,7 +24,7 @@ export const Registro_Admin = () => {
   const [permiso, setPermiso] = useState('')
 
   const RegistrarUsuario = () => {
-      Axios.post('http://localhost:4000/api/Usuario/insert', {
+      Axios.post('http://54.164.224.159:4000/api/Usuario/insert', {
           nombre,
           apellido,
           mail,
